@@ -7,22 +7,24 @@
       <th class="th-sm">Company
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm">Work
+      <th class="th-sm">Form
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
       <th class="th-sm"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Tiger Nixon</td>
-      <td>System Architect</td>
-      <td>Edinburgh</td>
-      <td>
-      	<i class="fa fa-eye" title="View"></i>
-      	<i class="fa fa-envelope" title="Email"></i>
-      	<i class="fa fa-download" title="Download"></i>
-      </td>
-    </tr>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.year %></td>
+        <td><%= document.user.email %></td>
+        <td><%= Document::FormName::NAMES[document.form_name]  %></td>
+        <td>
+          <i class="fa fa-eye" title="View"></i>
+          <i class="fa fa-envelope" title="Email"></i>
+          <i class="fa fa-download" title="Download"></i>
+        </td>
+      </tr>
+    <% end %>  
   </tbody>
 </table>
