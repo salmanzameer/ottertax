@@ -24,6 +24,9 @@
 }
 
 .wrapper {	
-	margin-top: 80px;
-  margin-bottom: 80px;
+	margin: 40px 0;
+}
+
+i.fa.fa-eye, i.fa.fa-envelope{
+	margin-right: 5px
 }

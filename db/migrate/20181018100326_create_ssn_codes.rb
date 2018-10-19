@@ -1,0 +1,9 @@
+class CreateSsnCodes < ActiveRecord::Migration[5.2]
+  def change
+    create_table :ssn_codes do |t|
+    	t.integer :ssn
+    	t.integer :code
+      t.timestamps
+    end
+  end
+end

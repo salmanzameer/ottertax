@@ -1,0 +1,2 @@
+class SsnCode < ApplicationRecord
+end
