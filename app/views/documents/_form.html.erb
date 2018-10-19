@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <%= form_with model: document, class: 'form-signin' do |f| %>
+    <h2 class="form-signin-heading">Upload Form Document</h2>
+    <p>This demo supports only W-2s and two file formats: Excel and IRS. Download the excel sample and/or IRS sample, edit as desired, and submit accordingly.</p>
+    <%= f.select(:year, options_for_select((2017..Date.today.year).to_a), {}, {class: "form-control"}) %> 
+    <%= f.select(:form_name, options_for_select(Document::FormName.for_select), {}, {class: "form-control"}) %>
+    <%= f.select(:file_format, options_for_select(Document::FileFormat.for_select), {}, {class: "form-control"}) %>
+    <div class="input-group">
+      <label class="input-group-btn">
+        <span class="btn btn-primary" style="bottom: 10px;">
+            Browse&hellip; <%= f.file_field :file, style: "display: none;" %>
+        </span>
+      </label>
+      <input type="text" class="form-control" readonly style="height: 34px;">
+    </div>
+    <%= f.submit "Create", class: "btn btn-lg btn-primary btn-block login-button" %>
+  <% end %>
+</div>

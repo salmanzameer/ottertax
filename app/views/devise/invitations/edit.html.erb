@@ -3,8 +3,7 @@
     <h2 class="form-signin-heading">Set Password</h2>
     <%= devise_error_messages! %>
   	<%= f.hidden_field :invitation_token, readonly: true %>
-  	<%= f.text_field :ssn, class: "form-control", placeholder: "SSN" %>
-    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+  	<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>      
     <%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-lg btn-primary btn-block" %>
   <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :documents
   get 'pages/home'
   devise_for :users, controllers: { sessions: "users/sessions" }
 	as :user do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
 
 	get '/verify', to: 'pages#verify', as: :verify_code
 	get '/invite', to: 'pages#invite', as: :invite_user
-	post '/send_invite', to: 'pages#send_invite', as: :send_invite_user_path
+	get '/employer', to: 'pages#employer', as: :employer
+	post '/send_invite', to: 'pages#send_invite', as: :send_invite_user
   root to: "pages#home"
 end

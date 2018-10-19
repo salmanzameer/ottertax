@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user!, except: [:verify, :invite]	  
+	before_action :authenticate_user!, except: [:verify, :invite, :send_invite]	  
   def home
   end
 
@@ -22,14 +22,28 @@ class PagesController < ApplicationController
   end
 
   def invite
-  	binding.pry
+  	check_auth_token
+  end
+
+  def send_invite
+  	check_auth_token
+
+  	User.invite!(email: params[:email])
+  	session[:verification_token] = ''
+  	flash[:success] = "An invitation has bee sent to your email."
+  	redirect_to user_session_path
+  end
+
+  def employer
+  	
+  end
+  
+  private
+
+  def check_auth_token
   	unless (params[:auth_token].present? && (params[:auth_token] == session[:verification_token]))
   		flash[:notice] = "Please verify you ssn and security code."
   		redirect_to verify_code_path 
   	end
-  end
-
-  def send_invite
-  	
   end
 end

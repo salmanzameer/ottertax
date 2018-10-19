@@ -29,16 +29,10 @@
 		}
 	}
 
-	input[type="text"], input[type="email"] {
+	input[type="text"], input[type="email"], input[type="password"], select {
 	  margin-bottom: 20px;
 	  border-bottom-left-radius: 0;
 	  border-bottom-right-radius: 0;
-	}
-
-	input[type="password"] {
-	  margin-bottom: 20px;
-	  border-top-left-radius: 0;
-	  border-top-right-radius: 0;
 	}
 
 	.login-button{
@@ -54,3 +48,13 @@
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 	}
 }
+
+.file-field.medium .file-path-wrapper {
+  height: 3rem; }
+  .file-field.medium .file-path-wrapper .file-path {
+    height: 2.8rem; }
+
+.file-field.big-2 .file-path-wrapper {
+  height: 3.7rem; }
+  .file-field.big-2 .file-path-wrapper .file-path {
+    height: 3.5rem; }
