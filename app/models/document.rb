@@ -2,9 +2,19 @@ class Document < ApplicationRecord
 
 	belongs_to :user
 	
-	has_attached_file :file
-	validates_attachment_presence :file
-	validates_attachment_content_type :file, content_type: [ "application/pdf", "application/x-pdf", "application/octet-stream", "application/x-download" ]
+	# has_attached_file :file
+	# validates_attachment_presence :file
+	# validates_attachment_content_type :file, content_type: [ "application/pdf", "application/x-pdf", "application/octet-stream", "application/x-download" ]
+	
+	def uploaded_file=(incoming_file)
+		self.filename = incoming_file.original_filename
+    self.content_type = incoming_file.content_type
+    self.file_contents = incoming_file.read
+  end
+
+  def filename=(new_filename)
+  	write_attribute("filename", sanitize_filename(new_filename))
+  end
 	
 	class FormName
 		B1095 = 1
@@ -34,4 +44,11 @@ class Document < ApplicationRecord
       NAMES.invert.to_a
     end
 	end
+
+	private
+  
+  def sanitize_filename(filename)
+  	just_filename = File.basename(filename)
+    just_filename.gsub(/[^\w\.\-]/, '_')
+  end
 end

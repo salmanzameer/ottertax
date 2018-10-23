@@ -5,12 +5,26 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = current_user.documents
   end
 
   # GET /documents/1
   # GET /documents/1.json
   def show
+    type = params[:type]
+    
+    if type == 'view'
+      send_data @document.file_contents, filename: @document.filename, type: @document.content_type, disposition: 'inline'
+    elsif type == 'download'
+      send_data @document.file_contents, filename: @document.filename, type: @document.content_type
+    elsif type == 'email'
+      ApplicationMailer.send_document(@document).deliver
+      flash[:success] = "An email has been sent to you."
+      redirect_to documents_path
+    else
+      flash[:error] = "Type doesn't match."
+      redirect_to documents_path
+    end
   end
 
   # GET /documents/new
@@ -26,7 +40,7 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = current_user.documents.new(document_params)
-
+    @document.uploaded_file = params[:document][:file]
     respond_to do |format|
       if @document.save
         format.html { redirect_to documents_path, notice: 'Document was successfully created.' }
@@ -70,6 +84,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:year, :file_format, :form_name, :file)
+      params.require(:document).permit(:year, :file_format, :form_name)
     end
 end

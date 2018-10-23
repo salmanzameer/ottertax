@@ -20,9 +20,17 @@
         <td><%= document.user.email %></td>
         <td><%= Document::FormName::NAMES[document.form_name]  %></td>
         <td>
-          <i class="fa fa-eye" title="View"></i>
-          <i class="fa fa-envelope" title="Email"></i>
-          <i class="fa fa-download" title="Download"></i>
+          <%= link_to document_path(document, type: 'view'), target: "_blank" do %>
+            <i class="fa fa-eye" title="View"></i>
+          <% end %>
+          
+          <%= link_to document_path(document, type: 'email') do %>
+            <i class="fa fa-envelope" title="Email"></i>
+          <% end %>
+          
+          <%= link_to document_path(document, type: 'download') do %>
+            <i class="fa fa-download" title="Download"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>  

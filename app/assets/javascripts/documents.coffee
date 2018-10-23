@@ -13,7 +13,7 @@ $ ->
 	  ]
 
 
-	$(document).ready ->
+	$(document).on 'turbolinks:load', ->
 	  $(':file').on 'fileselect', (event, numFiles, label) ->
 	    input = $(this).parents('.input-group').find(':text')
 	    log = if numFiles > 1 then numFiles + ' files selected' else label
