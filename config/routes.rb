@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+	root to: "documents#index"
   resources :documents
-  get 'pages/home'
+  
+  get '/about', to: 'pages#about', as: :about
+  
   devise_for :users, controllers: { sessions: "users/sessions" }
 	as :user do
   	get 'login', to: 'devise/sessions#new'
 	end
 
-	get '/verify', to: 'pages#verify', as: :verify_code
-	get '/invite', to: 'pages#invite', as: :invite_user
-	get '/employer', to: 'pages#employer', as: :employer
-	post '/send_invite', to: 'pages#send_invite', as: :send_invite_user
-  root to: "pages#home"
+	get '/verify', to: 'verifications#verify', as: :verify_code
+	get '/invite', to: 'verifications#invite', as: :invite_user
+	post '/send_invite', to: 'verifications#send_invite', as: :send_invite_user
 end
