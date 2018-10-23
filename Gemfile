@@ -32,7 +32,7 @@ gem 'redis', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'cryptor'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'devise_invitable', '~> 1.7.0'
 gem 'paperclip', "~> 6.0.0"
