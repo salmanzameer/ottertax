@@ -21,15 +21,15 @@
         <td><%= Document::FormName::NAMES[document.form_name]  %></td>
         <td>
           <%= link_to document_path(document, type: 'view'), target: "_blank" do %>
-            <i class="fa fa-eye" title="View"></i>
+            <i class="glyphicon glyphicon-eye-open"></i>
           <% end %>
           
           <%= link_to email_doc_document_path(document) do %>
-            <i class="fa fa-envelope" title="Email"></i>
+            <i class="glyphicon glyphicon-envelope"></i>
           <% end %>
           
           <%= link_to download_doc_document_path(document) do %>
-            <i class="fa fa-download" title="Download"></i>
+            <i class="glyphicon glyphicon-download"></i>
           <% end %>
         </td>
       </tr>
