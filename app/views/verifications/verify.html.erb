@@ -5,6 +5,7 @@
     <%= text_field_tag :ssn, "", placeholder: "Last four digits of your Social Security Number", class: "form-control" %>
     <%= text_field_tag :code, "", class: "form-control", placeholder: "Five-letter access code given to you by your employer" %>      
     <%= hidden_field_tag :auth_token, "", class: "user-verifiction-auth-token" %>
+    <%= hidden_field_tag :code_id, "", class: "user-ssn-code-id" %>
     <%= recaptcha_tags %>
     <%= submit_tag "Verify", class: "btn btn-lg btn-primary btn-block login-button user-verify-code-form-btn", data: { path: verify_code_path } %>
   <% end %>

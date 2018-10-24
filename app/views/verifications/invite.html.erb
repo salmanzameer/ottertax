@@ -2,7 +2,8 @@
   <%= form_tag send_invite_user_path, class: "form-signin user-verify-code-form" do %>
     <h2 class="form-signin-heading">Please signup</h2>
     <%= text_field_tag :email, "", placeholder: "Email", class: "form-control" %>
-    <%= hidden_field_tag :auth_token, params["auth_token"], class: "user-verifiction-auth-token" %>
+    <%= hidden_field_tag :auth_token, params["auth_token"] %>
+    <%= hidden_field_tag :code_id, params["code_id"] %>
     <%= submit_tag "signup", class: "btn btn-lg btn-primary btn-block login-button" %>
   <% end %>
 </div>

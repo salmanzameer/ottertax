@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :ssn_code
   has_many :documents
   after_create :add_user_role
 

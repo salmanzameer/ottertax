@@ -4,14 +4,14 @@ class VerificationsController < ApplicationController
   def verify
     if request.xhr?
       code = SsnCode.where(ssn: params[:ssn], code: params[:code]).first
-			if code.present?
+			if code.present? && code.user.blank?
 				session[:verification_token] = Devise.friendly_token
-				status, message, token = [400, "User verified successfully.", session[:verification_token]]
+				status, message, token, id = [400, "User verified successfully.", session[:verification_token], code.id]
 			else
 				status, message = [404, "ssn or access code is not verified."]
 			end
 		
-  		render json: { status: status, message: message, token: token }
+  		render json: { status: status, message: message, token: token, code_id: id }
   	end
   end
 
@@ -21,8 +21,7 @@ class VerificationsController < ApplicationController
 
   def send_invite
   	check_auth_token
-
-  	User.invite!(email: params[:email])
+    User.invite!(email: params[:email], ssn_code_id: params[:code_id])
   	session[:verification_token] = ''
   	flash[:success] = "An invitation has bee sent to your email."
   	redirect_to user_session_path
