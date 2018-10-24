@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 	root to: "documents#index"
-  resources :documents
+  resources :documents do 
+  	member do
+  		get :email_doc
+  		get :download_doc
+  	end
+  end
   
   get '/about', to: 'pages#about', as: :about
   

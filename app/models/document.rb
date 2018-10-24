@@ -9,7 +9,7 @@ class Document < ApplicationRecord
 	def uploaded_file=(incoming_file)
 		self.filename = incoming_file.original_filename
     self.content_type = incoming_file.content_type
-    self.file_contents = incoming_file.read
+    self.file_contents = encrypt_file(incoming_file.read)
   end
 
   def filename=(new_filename)
@@ -45,8 +45,28 @@ class Document < ApplicationRecord
     end
 	end
 
+	def encrypt_file(data)
+  	encrypt(data)
+  end
+
+	def decrypt_file
+  	decrypt(file_contents)
+  end
+
 	private
   
+  def encrypt(data)
+  	cryptor = Cryptor::SymmetricEncryption.new(ENV['OT-SECRET-KEY'])
+  	ciphertext = cryptor.encrypt(data)
+  	return 	ciphertext
+  end
+
+  def decrypt(data)
+  	cryptor = Cryptor::SymmetricEncryption.new(ENV['OT-SECRET-KEY'])
+  	decrypted = cryptor.decrypt(data)
+  	return 	decrypted
+  end
+
   def sanitize_filename(filename)
   	just_filename = File.basename(filename)
     just_filename.gsub(/[^\w\.\-]/, '_')

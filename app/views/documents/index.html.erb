@@ -24,11 +24,11 @@
             <i class="fa fa-eye" title="View"></i>
           <% end %>
           
-          <%= link_to document_path(document, type: 'email') do %>
+          <%= link_to email_doc_document_path(document) do %>
             <i class="fa fa-envelope" title="Email"></i>
           <% end %>
           
-          <%= link_to document_path(document, type: 'download') do %>
+          <%= link_to download_doc_document_path(document) do %>
             <i class="fa fa-download" title="Download"></i>
           <% end %>
         </td>

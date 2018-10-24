@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :email_doc, :download_doc]
 
   # GET /documents
   # GET /documents.json
@@ -11,22 +11,21 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    type = params[:type]
-    
-    if type == 'view'
-      send_data @document.file_contents, filename: @document.filename, type: @document.content_type, disposition: 'inline'
-    elsif type == 'download'
-      send_data @document.file_contents, filename: @document.filename, type: @document.content_type
-    elsif type == 'email'
-      ApplicationMailer.send_document(@document).deliver
-      flash[:success] = "An email has been sent to you."
-      redirect_to documents_path
-    else
-      flash[:error] = "Type doesn't match."
-      redirect_to documents_path
-    end
+    data = @document.decrypt_file
+    send_data data, filename: @document.filename, type: @document.content_type, disposition: 'inline'
   end
 
+  def email_doc
+    ApplicationMailer.send_document(@document).deliver
+    flash[:success] = 'An email has been sent to you.'
+    
+    return redirect_to documents_path
+  end
+
+  def download_doc
+    data = @document.decrypt_file
+    send_data data, filename: @document.filename, type: @document.content_type
+  end
   # GET /documents/new
   def new
     @document = Document.new
@@ -79,7 +78,11 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      @document = Document.find(params[:id])
+      @document = current_user.documents.where(id: params[:id]).first
+      unless @document.present?
+        flash[:error] = 'This document does not belongs to you.'
+        return redirect_to documents_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

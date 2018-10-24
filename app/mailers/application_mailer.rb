@@ -3,8 +3,8 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def send_document(document)
-  	attachments[document.filename] = {:mime_type => document.content_type,
-                                   :content => document.file_contents }
-    mail(:to => document.user.email, :subject => "New account information")
+  	data = document.decrypt_file
+  	attachments[document.filename] = { mime_type: document.content_type, content: data }
+    mail(to: document.user.email, subject: "Tax information file")
   end
 end
