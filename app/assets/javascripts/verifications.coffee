@@ -22,7 +22,6 @@ jQuery ->
 		        	alert(data.message)
 		        else
 		        	$(".user-verifiction-auth-token").val(data.token)
-		        	console.log data
-		        	console.log data.code_id
+		        	alert data.code_id
 		        	$(".user-ssn-code-id").val(data.code_id)
 		        	$(".user-verify-code-form").submit()
