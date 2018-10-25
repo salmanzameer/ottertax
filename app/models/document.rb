@@ -37,9 +37,9 @@ class Document < ApplicationRecord
 		OFFICE = 2
 		CSV = 3
 		TRANSFILE = 4
-
-		NAMES = { MICEXCEL => "Microsoft Excel", OFFICE => "OpenOffice/LibreOffice", CSV => "Comma-separated value (CSV)",  TRANSFILE => "IRS/SSA transmission file" }
-
+		PDF = 5
+		#NAMES = { PDF => "PDF", MICEXCEL => "Microsoft Excel", OFFICE => "OpenOffice/LibreOffice", CSV => "Comma-separated value (CSV)",  TRANSFILE => "IRS/SSA transmission file" }
+		NAMES = { PDF => "PDF" }
 		def self.for_select
       NAMES.invert.to_a
     end

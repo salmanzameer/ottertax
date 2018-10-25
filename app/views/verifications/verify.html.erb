@@ -1,6 +1,6 @@
 <div class="wrapper">
   <%= form_tag  invite_user_path, class: "form-signin user-verify-code-form", method: :get do %>
-    <h2 class="form-signin-heading">Please Verify</h2>
+    <h2 class="form-signin-heading">Prove your identity to signup</h2>
     <p>OtterTax allows you to view, print, and email your tax forms. To get started, enter the last four digits of your Social Security Number and the five-letter access code supplied by your employer.</p>
     <%= text_field_tag :ssn, "", placeholder: "Last four digits of your Social Security Number", class: "form-control" %>
     <%= text_field_tag :code, "", class: "form-control", placeholder: "Five-letter access code given to you by your employer" %>      

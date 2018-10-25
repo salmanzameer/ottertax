@@ -40,6 +40,12 @@ gem 'aws-sdk', '~> 3'
 gem "recaptcha"
 gem "rolify"
 gem 'cancancan'
+gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
+gem 'safely_block'
+# gem 'strong_migrations'
+gem "audited", "~> 4.7"
+gem 'rack-attack'
+gem 'gon'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
