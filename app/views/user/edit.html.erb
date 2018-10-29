@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <%= form_tag  invite_user_path, class: "form-signin user-verify-code-form", method: :get do %>
+    <h2 class="form-signin-heading">Update Profile</h2>
+    <%= text_field_tag :email, "", placeholder: "Email", class: "form-control" %>
+    <%= text_field_tag :password, "", class: "form-control", placeholder: "Password" %>      
+    <%= submit_tag "Update", class: "btn btn-lg btn-primary btn-block login-button" %>
+  <% end %>
+</div>

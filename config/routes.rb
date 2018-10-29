@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   	end
   end
   
+  resources :user
+
   get '/about', to: 'pages#about', as: :about
   
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 	as :user do
-  	get 'login', to: 'devise/sessions#new'
+  	get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration'    
+  	put 'users' => 'users/registrations#update', :as => 'user_registration'  
 	end
 
 	get '/register', to: 'verifications#verify', as: :verify_code
