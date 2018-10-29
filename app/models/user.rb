@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def add_user_role
   	self.add_role :user
   end
+
+  def full_name
+    first_name+" "+last_name
+  end
 end
