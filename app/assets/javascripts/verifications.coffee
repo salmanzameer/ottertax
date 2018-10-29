@@ -8,6 +8,8 @@ jQuery ->
 			e.preventDefault()
 			if (grecaptcha.getResponse().length == 0)
 				return false
+			else if ($('.user-verification-ssn-error, .user-verification-code-error').is(':visible'))
+				return false
 			else
 				$.ajax
 		      type: 'GET'
@@ -37,4 +39,14 @@ jQuery ->
 			else if ($(email).val() != $(confirm_email).val())
 				$(".mismatch-error-email").text("Email doesn't match.").show()
 			else
-				$('.user-invite-form').submit()	
+				$('.user-invite-form').submit()
+
+		$(".user-verification-ssn").on 'keyup', (e) ->
+			regx = /^\d+$/
+			if !(regx.test($(this).val()))
+				$('.user-verification-ssn-error').text('Please enter digits only').show()
+
+		$(".user-verification-code").on 'keyup', (e) ->
+			regx = /^[a-zA-Z()]+$/
+			if !(regx.test($(this).val()))
+				$('.user-verification-code-error').text('Please enter alphabets only').show()
