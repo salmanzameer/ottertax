@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   	get 'login', to: 'devise/sessions#new'
 	end
 
-	get '/verify', to: 'verifications#verify', as: :verify_code
+	get '/register', to: 'verifications#verify', as: :verify_code
 	get '/invite', to: 'verifications#invite', as: :invite_user
 	post '/send_invite', to: 'verifications#send_invite', as: :send_invite_user
 end

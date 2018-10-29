@@ -46,6 +46,7 @@ gem 'safely_block'
 gem "audited", "~> 4.7"
 gem 'rack-attack'
 gem 'gon'
+gem 'ahoy_matey'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

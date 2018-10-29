@@ -52,6 +52,16 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ahoy_matey (2.1.0)
+      addressable
+      browser (~> 2.0)
+      device_detector
+      geocoder (>= 1.4.5)
+      railties (>= 4.2)
+      referer-parser (>= 0.3)
+      request_store
+      safely_block (>= 0.2.1)
+      user_agent_parser
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -654,6 +664,7 @@ GEM
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
+    browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
@@ -683,6 +694,7 @@ GEM
     cryptor (1.1.1)
       ordo (>= 0.0.2)
     database_cleaner (1.7.0)
+    device_detector (1.0.1)
     devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -706,6 +718,7 @@ GEM
       i18n (>= 0.7)
     ffi (1.9.25)
     formatador (0.2.5)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gon (6.2.1)
@@ -832,6 +845,7 @@ GEM
     recaptcha (4.12.0)
       json
     redis (4.0.2)
+    referer-parser (0.3.0)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -909,6 +923,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
+    user_agent_parser (2.5.0)
     warden (1.2.7)
       rack (>= 1.0)
     watir (6.14.0)
@@ -930,6 +945,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ahoy_matey
   audited (~> 4.7)
   aws-sdk (~> 3)
   bootsnap (>= 1.1.0)

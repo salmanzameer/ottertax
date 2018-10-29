@@ -16,24 +16,34 @@ class VerificationsController < ApplicationController
   end
 
   def invite
-  	check_auth_token
+  	unless check_auth_token
+      flash[:notice] = "Please verify you ssn and security code."
+      redirect_to verify_code_path
+    end
   end
 
   def send_invite
-  	check_auth_token
-    User.invite!(email: params[:email], ssn_code_id: params[:code_id])
-  	session[:verification_token] = ''
-  	flash[:success] = "An invitation has bee sent to your email."
-  	redirect_to user_session_path
+    unless check_auth_token
+      flash[:notice] = "Please verify you ssn and security code."
+      redirect_to verify_code_path 
+    else  
+      user = User.where(email: params[:email]).first
+      if user.present? 
+        flash[:error] = "User with this email already present."
+        redirect_to invite_user_path(auth_token: params[:auth_token], code_id: params[:code_id])
+      else
+        User.invite!(email: params[:email], ssn_code_id: params[:code_id])
+      	session[:verification_token] = ''
+      	flash[:success] = "An invitation has bee sent to your email."
+      	redirect_to user_session_path
+      end
+    end
   end
 
   private
   
   def check_auth_token
-  	unless (params[:auth_token].present? && (params[:auth_token] == session[:verification_token]))
-  		flash[:notice] = "Please verify you ssn and security code."
-  		redirect_to verify_code_path 
-  	end
+  	(params[:auth_token].present? && (params[:auth_token] == session[:verification_token]))	
   end
 
   def check_user
