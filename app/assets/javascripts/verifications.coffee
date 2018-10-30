@@ -41,12 +41,16 @@ jQuery ->
 			else
 				$('.user-invite-form').submit()
 
-		$(".user-verification-ssn").on 'keyup', (e) ->
+		$(".user-verification-ssn").on 'blur', (e) ->
 			regx = /^\d+$/
 			if !(regx.test($(this).val()))
 				$('.user-verification-ssn-error').text('Please enter digits only').show()
-
-		$(".user-verification-code").on 'keyup', (e) ->
+			else
+				$('.user-verification-ssn-error').hide()
+				
+		$(".user-verification-code").on 'blur', (e) ->
 			regx = /^[a-zA-Z()]+$/
 			if !(regx.test($(this).val()))
 				$('.user-verification-code-error').text('Please enter alphabets only').show()
+			else
+				$('.user-verification-code-error').hide()
