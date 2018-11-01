@@ -1,9 +1,20 @@
 RSpec.describe VerificationsController, type: :controller do
   let!(:ssn_code) { create(:ssn_code, ssn: '1234', code: '54231') }
+  let!(:ssn_code1) { create(:ssn_code, ssn: '1414', code: 'asdfg') }
+  let!(:user) { create(:user, ssn_code_id: ssn_code1.id) }
 
   describe 'GET #verify' do
     context 'when ssn and code does not match' do
       subject { get :verify, xhr: true, params: { ssn: '2244', code: '12543' } }
+      before { subject }
+
+      it 'status should be 404' do
+        expect(JSON.parse(response.body)["status"]).to eq(404)
+      end
+    end
+
+    context 'when ssn and code is already assigned to any other user' do
+      subject { get :verify, xhr: true, params: { ssn: '1414', code: 'asdfg' } }
       before { subject }
 
       it 'status should be 404' do

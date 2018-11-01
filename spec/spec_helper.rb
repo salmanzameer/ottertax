@@ -9,6 +9,8 @@ require 'devise'
 require 'rspec/rails'
 require 'pry'
 
+ENV['OT-SECRET-KEY'] = "secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ"
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Rails.application.routes.url_helpers

@@ -16,8 +16,8 @@ class DocumentsController < ApplicationController
   end
 
   def email_doc
-    ApplicationMailer.send_document(@document).deliver
-    flash[:success] = 'An email has been sent to you.'
+    ApplicationMailer.send_document(@document, params[:email]).deliver
+    flash[:success] = 'Email has been sent successfully.'
     
     return redirect_to documents_path
   end
@@ -87,6 +87,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:year, :file_format, :form_name)
+      params.require(:document).permit(:year, :file_format, :form_name, :company_name)
     end
 end

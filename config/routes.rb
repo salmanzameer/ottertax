@@ -2,9 +2,12 @@ Rails.application.routes.draw do
 	root to: "documents#index"
   resources :documents do 
   	member do
-  		get :email_doc
   		get :download_doc
   	end
+
+    collection do
+      post :email_doc 
+    end
   end
   
   resources :user

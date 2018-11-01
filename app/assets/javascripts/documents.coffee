@@ -22,4 +22,17 @@ $ ->
 	    else
 	      if log
 	        alert log
-	        
+
+  $('.send-email-document-link').on 'click', (e) ->
+  	e.preventDefault()
+  	$('.send-emai-document-id').val($(this).data('id'))
+  	$('#modal-send-email').modal('show')
+
+ 	$('.send-document-email-btn').on 'click', (e) ->
+ 		e.preventDefault()
+ 		email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
+ 		if email_regex.test($('.send-email-document-email').val())
+ 			$('.error-email').hide()
+ 			$('.send-document-email-form').submit()
+ 		else
+ 			$('.error-email').show().text("Please enter correct email.")

@@ -23,3 +23,7 @@ $(document).ready(function(){
     $('.alert').remove();
   }, 5000);
  })
+
+var submitInvisibleRecaptchaForm = function () {
+  $('.user-verification-captcha-error').hide();
+};

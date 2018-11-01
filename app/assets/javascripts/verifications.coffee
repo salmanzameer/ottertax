@@ -6,7 +6,13 @@ jQuery ->
 		$(".user-verify-code-form-btn").click (e) ->
 			_this = this
 			e.preventDefault()
-			if (grecaptcha.getResponse().length == 0)
+			
+			if $(".user-verification-ssn").val() == ''
+				$('.user-verification-ssn-error').text('This field is required').show()
+			else if $(".user-verification-code").val() == '' 
+				$('.user-verification-code-error').text('This field is required').show()
+			else if (grecaptcha.getResponse().length == 0)
+				$('.user-verification-captcha-error').text('Please select the checkbox.').show()
 				return false
 			else if ($('.user-verification-ssn-error, .user-verification-code-error').is(':visible'))
 				return false
@@ -21,7 +27,8 @@ jQuery ->
 		        console.log er
 		      success: (data) ->
 		        if (data.status == 404)
-		        	alert(data.message)
+		        	$('#modal-verification-errors').modal('show')
+		        	$('.verrification-error-message-p').show().text(data.message)
 		        else
 		        	$(".user-verifiction-auth-token").val(data.token)
 		        	$(".user-ssn-code-id").val(data.code_id)
@@ -43,14 +50,22 @@ jQuery ->
 
 		$(".user-verification-ssn").on 'blur', (e) ->
 			regx = /^\d+$/
-			if !(regx.test($(this).val()))
+			if ($(this).val() == '')
+				$('.user-verification-ssn-error').text('This field is required').show()
+			else if !(regx.test($(this).val()))
 				$('.user-verification-ssn-error').text('Please enter digits only').show()
+			else if ($(this).val().length != 4)
+				$('.user-verification-ssn-error').text('Please enter last 4 SSN').show()
 			else
 				$('.user-verification-ssn-error').hide()
 				
 		$(".user-verification-code").on 'blur', (e) ->
 			regx = /^[a-zA-Z()]+$/
-			if !(regx.test($(this).val()))
+			if ($(this).val() == '')
+				$('.user-verification-code-error').text('This field is required').show()
+			else if !(regx.test($(this).val()))
 				$('.user-verification-code-error').text('Please enter alphabets only').show()
+			else if ($(this).val().length != 5)
+				$('.user-verification-code-error').text('Please enter your access code').show()
 			else
 				$('.user-verification-code-error').hide()

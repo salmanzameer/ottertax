@@ -8,7 +8,7 @@ class VerificationsController < ApplicationController
 				session[:verification_token] = Devise.friendly_token
 				status, message, token, id = [400, "User verified successfully.", session[:verification_token], code.id]
 			else
-				status, message = [404, "ssn or access code is not verified."]
+				status, message = [404, "The information you entered does not match our records. Please try again."]
 			end
 		
   		render json: { status: status, message: message, token: token, code_id: id }

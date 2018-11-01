@@ -5,10 +5,10 @@
     <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
     <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
     <%= f.email_field :email, class: "form-control" %>
-    <i>(leave blank if you don't want to change it password)</i>
-    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+    <i>(leave blank if you don't want to change password)</i>
     <%= f.password_field :current_password, class: "form-control", placeholder: "Current Password" %>
+    <%= f.password_field :password, class: "form-control", placeholder: "New Password" %>
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Re-Enter New Password" %>
     <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block login-button" %>
   <% end %>
 </div>

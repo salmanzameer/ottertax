@@ -5,6 +5,7 @@
     <%= f.select(:year, options_for_select((2017..Date.today.year).to_a), {}, {class: "form-control"}) %> 
     <%= f.select(:form_name, options_for_select(Document::FormName.for_select), {}, {class: "form-control"}) %>
     <%= f.select(:file_format, options_for_select(Document::FileFormat.for_select), {}, {class: "form-control"}) %>
+    <%= f.text_field :company_name, class: "form-control", placeholder: "Company Name" %>
     <div class="input-group">
       <label class="input-group-btn">
         <span class="btn btn-primary" style="bottom: 10px;">
