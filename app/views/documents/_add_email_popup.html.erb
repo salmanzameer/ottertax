@@ -1,0 +1,23 @@
+<div class="modal" id="modal-send-email" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Send Document</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag email_doc_documents_path, class: "send-document-email-form" do %>
+          <%= text_field_tag :email, "", placeholder: "Enter Email", class: "form-control send-email-document-email" %>
+          <p class="error-email error-p"></p>
+          <%= hidden_field_tag :id, "", class: "send-emai-document-id" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary send-document-email-btn">Send Email</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

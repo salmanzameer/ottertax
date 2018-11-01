@@ -2,34 +2,17 @@
   <%= form_tag  invite_user_path, class: "form-signin user-verify-code-form", method: :get do %>
     <h2 class="form-signin-heading">Register Your Account</h2>
     <p class="invitation-page-note">OtterTax allows you to view, print, and email your tax forms. To get started, enter the last four digits of your Social Security Number and the five-letter access code supplied by your employer.</p>
-    <%= text_field_tag :ssn, "", placeholder: "Last 4 digits of SSN", class: "form-control user-verification-ssn" %>
-    <p class="user-verification-ssn-error" style="display: none; color: red;"></p>
-    <%= text_field_tag :code, "", class: "form-control user-verification-code", placeholder: "5 character access code" %>      
-    <p class="user-verification-code-error" style="display: none; color: red;"></p>
+    <%= number_field_tag :ssn, "", placeholder: "Last 4 digits of SSN", class: "form-control user-verification-ssn", maxlength: 4, oninput: "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" %>
+    <p class="user-verification-ssn-error error-p"></p>
+    <%= text_field_tag :code, "", class: "form-control user-verification-code", placeholder: "5 character access code", maxlength: 5 %>      
+    <p class="user-verification-code-error error-p"></p>
     <%= hidden_field_tag :auth_token, "", class: "user-verifiction-auth-token" %>
     <%= hidden_field_tag :code_id, "", class: "user-ssn-code-id" %>
     <%= recaptcha_tags callback: "submitInvisibleRecaptchaForm" %>
-    <p class="user-verification-captcha-error" style="display: none; color: red;"></p>
+    <p class="user-verification-captcha-error error-p"></p>
     <%= submit_tag "Register", class: "btn btn-lg btn-primary btn-block login-button user-verify-code-form-btn", data: { path: verify_code_path } %>
     Already have an account? <%= link_to "Click here to login", new_session_path('user')  %>
   <% end %>
 </div>
 
-<div class="modal" id="modal-verification-errors" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Verification Error</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="verrification-error-message-p" style="color: red; display: none;"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'verification_error_modal' %>
