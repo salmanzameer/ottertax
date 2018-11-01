@@ -21,7 +21,8 @@ class Document < ApplicationRecord
 		W2 = 6
 		W2C = 7
 		S1042 = 8
-		NAMES = { B1095 => "1095-B", C1095 => "1095-C", INT1099 => "1099-INT",  MISC1099 => "1099-MISC",  R1099 => "1099-R", S1042 => "1042-S", W2 => "W-2", W2C => "W-2c",  }
+		N5498 = 9
+		NAMES = { B1095 => "1095-B", C1095 => "1095-C", INT1099 => "1099-INT",  MISC1099 => "1099-MISC",  R1099 => "1099-R", S1042 => "1042-S", W2 => "W-2", W2C => "W-2c", N5498 => '5498' }
 
 		def self.for_select
       NAMES.invert.to_a
