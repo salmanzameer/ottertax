@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+	$('#dtBasicExample').DataTable
+		searching: false
+		paging: false
+		bInfo: false
+		bSortable: true
+
 	$(document).on 'change', ':file', ->
 	  input = $(this)
 	  numFiles = if input.get(0).files then input.get(0).files.length else 1
