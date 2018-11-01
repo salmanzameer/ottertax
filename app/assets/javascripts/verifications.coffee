@@ -69,3 +69,11 @@ jQuery ->
 				$('.user-verification-code-error').text('Please enter your access code').show()
 			else
 				$('.user-verification-code-error').hide()
+
+		$(".user-verification-code").on 'keyup', (e) ->
+			regx = /^[a-zA-Z()]+$/
+			if !(regx.test($(this).val()))
+				$(this).val($(this).val().replace(/\d+/g, ''))
+				$('.user-verification-code-error').text('Please enter alphabets only').show()
+			else
+				$('.user-verification-code-error').hide()
