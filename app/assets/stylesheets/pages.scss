@@ -74,3 +74,13 @@
 	display: none;
 	color: red;
 }
+
+#error_explanation ul {
+  margin: 0 0 10px 0;
+  padding: 0px;
+}
+
+#error_explanation li {
+  color: red;
+  list-style-type: none;
+}
