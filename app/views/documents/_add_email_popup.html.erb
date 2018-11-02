@@ -10,7 +10,7 @@
       <div class="modal-body">
         <%= form_tag email_doc_documents_path, class: "send-document-email-form" do %>
           <%= text_field_tag :email, "", placeholder: "Enter Email", class: "form-control send-email-document-email" %>
-          <p class="error-email error-p"></p>
+          <p class="error-email error-p" style="margin-top: 5px;"></p>
           <%= hidden_field_tag :id, "", class: "send-emai-document-id" %>
         <% end %>
       </div>
