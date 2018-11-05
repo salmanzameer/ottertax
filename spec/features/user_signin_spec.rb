@@ -9,7 +9,7 @@ RSpec.feature 'User Registration', js: true do
       fill_in 'Email Address', with: 'salman@gmail.com'
       fill_in 'Password', with: 'password'
       click_on('Log in')
-      #expect(page).to have_content 'Congrats! your organization is successfully created'
+      expect(page).to have_current_path(documents_path)
     end
   end
 end
