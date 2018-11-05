@@ -105,3 +105,22 @@ jQuery ->
 			else
 				$('.user-signin-password-error').hide()
 			
+		$('.user_update_new_pass, .user_update_curr_pass, .user_update_confirm_pass').on 'blur', (e) ->
+			if $(this).val() != ''
+				_class = $(this).attr('class').split(' ')[1]	
+				$('.'+_class+'_error').hide()
+
+		$('.user_update_email').on 'blur', (e) ->
+			email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/	
+			_class = $(this).attr('class').split(' ')[1]
+			if ($(this).val().length == 0)
+				$(this).next().text("Email can't be blank").show()
+			else if !email_regex.test($(this).val())
+				$(this).next().text('Please enter correct email').show()
+			else
+				$('.'+_class+'_error').hide()
+
+		$('.user-update-form :input').change ->
+  		$('.update-user-btn').prop("disabled", false)
+
+  	

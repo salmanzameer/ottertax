@@ -4,15 +4,15 @@
     
     <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
     <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
-    <%= f.email_field :email, class: "form-control" %>
-    <p class="error-p" style="display: block;"><%= 'Email ' + resource.errors[:email].join(", ") if resource.errors[:email].present? %></p>
+    <%= f.email_field :email, class: "form-control user_update_email" %>
+    <p class="error-p user_update_email_error" style="display: block;"><%= 'Email ' + resource.errors[:email].join(", ") if resource.errors[:email].present? %></p>
     <i>(leave blank if you don't want to change password)</i>
-    <%= f.password_field :current_password, class: "form-control", placeholder: "Current Password" %>
-    <p class="error-p" style="display: block;"><%= 'Current Password ' + resource.errors[:current_password].join(", ") if resource.errors[:current_password].present? %></p>
-    <%= f.password_field :password, class: "form-control", placeholder: "New Password" %>
-    <p class="error-p" style="display: block;"><%= 'New Password ' + resource.errors[:password].join(", ") if resource.errors[:password].present? %></p>
-    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Re-Enter New Password" %>
-    <p class="error-p" style="display: block;"><%= 'Confirm Password ' + resource.errors[:password_confirmation].join(", ") if resource.errors[:password_confirmation].present? %></p>
+    <%= f.password_field :current_password, class: "form-control user_update_curr_pass", placeholder: "Current Password" %>
+    <p class="error-p user_update_curr_pass_error" style="display: block;"><%= 'Current Password ' + resource.errors[:current_password].join(", ") if resource.errors[:current_password].present? %></p>
+    <%= f.password_field :password, class: "form-control user_update_new_pass", placeholder: "New Password" %>
+    <p class="error-p user_update_new_pass_error" style="display: block;"><%= 'New Password ' + resource.errors[:password].join(", ") if resource.errors[:password].present? %></p>
+    <%= f.password_field :password_confirmation, class: "form-control user_update_confirm_pass", placeholder: "Re-Enter New Password" %>
+    <p class="error-p user_update_confirm_pass_error" style="display: block;"><%= 'Confirm Password ' + resource.errors[:password_confirmation].join(", ") if resource.errors[:password_confirmation].present? %></p>
     <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block login-button update-user-btn", disabled: true %>
   <% end %>
 </div>
