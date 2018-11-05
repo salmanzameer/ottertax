@@ -50,4 +50,8 @@ $ ->
 	 			$('.send-document-email-form').submit()
 
 	 	$('.user-update-form :input').change ->
-  		$('.update-user-btn').prop("disabled", false);
+  		$('.update-user-btn').prop("disabled", false)
+
+
+  	$('.user-update-form :input').keyup ->
+  		$('.update-user-btn').prop("disabled", false)

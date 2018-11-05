@@ -8,6 +8,7 @@ SimpleCov.start 'rails'
 require 'devise'
 require 'rspec/rails'
 require 'pry'
+require 'capybara/rspec'
 
 ENV['OT-SECRET-KEY'] = "secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ"
 
@@ -45,3 +46,9 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.expose_dsl_globally = false
 end
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+Capybara.server_port = 4000

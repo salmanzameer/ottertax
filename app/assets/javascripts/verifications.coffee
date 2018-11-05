@@ -72,3 +72,36 @@ jQuery ->
 				$('.user-verification-code-error').text('Please enter your access code').show()
 			else
 				$('.user-verification-code-error').hide()
+
+
+		$(".user-signin-form-btn").click (e) ->
+			_this = this
+			e.preventDefault()
+			
+			$('.form-control').each ->
+				if $(this).val() == ''
+					$(this).next().text('This field is required').show()
+			
+			if (grecaptcha.getResponse().length == 0)
+				$('.user-verification-captcha-error').text('Please select the checkbox.').show()
+				return false
+			else if ($('.error-p').is(':visible'))
+				return false
+			else
+				$(".user-signin-form").submit()
+
+		$('.user-signin-email').on 'blur', (e) ->
+			email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/	
+			if ($(this).val().length == 0)
+				$(this).next().text('This field is required').show()
+			else if !email_regex.test($(this).val())
+				$(this).next().text('Please enter correct email').show()
+			else
+				$('.user-signin-email-error').hide()
+
+		$('.user-signin-password').on 'blur', (e) ->
+			if ($(this).val().length == 0)
+				$(this).next().text('This field is required').show()
+			else
+				$('.user-signin-password-error').hide()
+			
