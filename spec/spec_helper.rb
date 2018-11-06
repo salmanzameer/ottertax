@@ -33,6 +33,16 @@ RSpec.configure do |config|
     Watir.default_timeout = 5
   end
 
+  config.before :each do
+    DatabaseCleaner.clean
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+  end
+  
+  config.after do
+    DatabaseCleaner.clean
+  end
+
   Warden.test_mode!
 
   config.after do
