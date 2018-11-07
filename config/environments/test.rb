@@ -34,7 +34,7 @@ Rails.application.configure do
   config.active_storage.service = :test
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: ENV['APP_HOST'], port: 4000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 4000 }
 
   # development letter opener configuration
   config.action_mailer.delivery_method = :letter_opener
