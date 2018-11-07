@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :email_doc, :download_doc]
+  before_action :set_document, only: %i[show edit update destroy email_doc]
 
   # GET /documents
   # GET /documents.json
@@ -12,28 +14,28 @@ class DocumentsController < ApplicationController
   # GET /documents/1.json
   def show
     data = @document.decrypt_file
-    send_data data, filename: @document.filename, type: @document.content_type, disposition: 'inline'
+
+    file_hash = { filename: @document.filename, type: @document.content_type }
+
+    file_hash.merge(disposition: 'inline') if params[:type] == 'view'
+
+    send_data(data, file_hash)
   end
 
   def email_doc
     ApplicationMailer.send_document(@document, params[:email]).deliver
     flash[:success] = 'Email has been sent successfully.'
-    
-    return redirect_to documents_path
+
+    redirect_to documents_path
   end
 
-  def download_doc
-    data = @document.decrypt_file
-    send_data data, filename: @document.filename, type: @document.content_type
-  end
   # GET /documents/new
   def new
     @document = Document.new
   end
 
   # GET /documents/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /documents
   # POST /documents.json
@@ -76,17 +78,18 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = current_user.documents.where(id: params[:id]).first
-      unless @document.present?
-        flash[:error] = 'This document does not belongs to you.'
-        return redirect_to documents_path
-      end
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def document_params
-      params.require(:document).permit(:year, :file_format, :form_name, :company_name)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = current_user.documents.where(id: params[:id]).first
+    unless @document.present?
+      flash[:error] = 'This document does not belongs to you.'
+      return redirect_to documents_path
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def document_params
+    params.require(:document).permit(:year, :file_format, :form_name, :company_name)
+  end
 end

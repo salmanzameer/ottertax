@@ -1,0 +1,77 @@
+# This is the default configuration file. Enabling and disabling is configured
+# in separate files. This file adds all other parameters apart from Enabled.
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be an Integer or
+  # a Float.
+  Max: 100
+
+Metrics/BlockLength:
+  CountComments: false  # count full line comments?
+  Max: 140
+  ExcludedMethods: []
+
+Metrics/BlockNesting:
+  CountBlocks: false
+  Max: 5
+
+Metrics/ClassLength:
+  CountComments: false  # count full line comments?
+  Max: 500
+
+# Avoid complex methods.
+Metrics/CyclomaticComplexity:
+  Max: 25
+
+Metrics/LineLength:
+  Max: 250
+  # To make it possible to copy or click on URIs in the code, we allow lines
+  # containing a URI to be longer than Max.
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+  # The IgnoreCopDirectives option causes the LineLength rule to ignore cop
+  # directives like '# rubocop: enable ...' when calculating a line's length.
+  IgnoreCopDirectives: false
+  # The IgnoredPatterns option is a list of !ruby/regexp and/or string
+  # elements. Strings will be converted to Regexp objects. A line that matches
+  # any regular expression listed in this option will be ignored by LineLength.
+  IgnoredPatterns: []
+
+  Exclude:
+    - 'Gemfile'
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 100
+
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 150
+
+Metrics/ParameterLists:
+  Max: 7
+  CountKeywordArgs: true
+
+Metrics/PerceivedComplexity:
+  Max: 25
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: nested
+  SupportedStyles:
+    - nested
+    - compact
+
+Style/GuardClause:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: false

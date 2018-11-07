@@ -1,8 +1,11 @@
-class ApplicationController < ActionController::Base
-	protect_from_forgery
+# frozen_string_literal: true
 
-	protected
-    def after_sign_in_path_for(resource)
-      request.env['omniauth.origin'] || stored_location_for(resource) || documents_path
-    end
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  protected
+
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || documents_path
+  end
 end

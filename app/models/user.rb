@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   rolify
   audited
@@ -11,10 +13,10 @@ class User < ApplicationRecord
   after_create :add_user_role
 
   def add_user_role
-  	self.add_role :user
+    add_role :user
   end
 
   def full_name
-    first_name.to_s+" "+last_name.to_s
+    first_name.to_s + ' ' + last_name.to_s
   end
 end

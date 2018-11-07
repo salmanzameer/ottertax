@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -34,11 +36,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: ENV['APP_HOST'], port: 4000 }
 
-  #development letter opener configuration
+  # development letter opener configuration
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
-  
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.

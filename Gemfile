@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -32,35 +34,34 @@ gem 'redis', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'cancancan'
 gem 'cryptor'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'devise_invitable', '~> 1.7.0'
-gem 'paperclip', "~> 6.0.0"
-gem 'aws-sdk', '~> 3'
-gem "recaptcha"
-gem "rolify"
-gem 'cancancan'
 gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
+gem 'paperclip', '~> 6.0.0'
+gem 'recaptcha'
+gem 'rolify'
 gem 'safely_block'
 # gem 'strong_migrations'
-gem "audited", "~> 4.7"
-gem 'rack-attack'
-gem 'gon'
 gem 'ahoy_matey'
+gem 'audited', '~> 4.7'
+gem 'gon'
+gem 'rack-attack'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'rubocop', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "letter_opener"
-  gem 'web-console', '>= 3.3.0'
+  gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -76,17 +77,17 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'rails-controller-testing'
-  gem 'simplecov', require: false
-  gem 'guard-rspec', require: false
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'database_cleaner'
+  gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.0'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
   gem 'watir'
   gem 'watir_drops'
 end

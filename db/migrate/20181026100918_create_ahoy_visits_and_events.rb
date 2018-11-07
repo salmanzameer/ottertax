@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
   def change
     create_table :ahoy_visits do |t|
@@ -48,7 +50,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
       t.timestamp :time
     end
 
-    add_index :ahoy_events, [:name, :time]
-    add_index :ahoy_events, "properties jsonb_path_ops", using: "gin"
+    add_index :ahoy_events, %i[name time]
+    add_index :ahoy_events, 'properties jsonb_path_ops', using: 'gin'
   end
 end

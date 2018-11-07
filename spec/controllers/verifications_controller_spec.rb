@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe VerificationsController, type: :controller do
   let!(:ssn_code) { create(:ssn_code, ssn: '1234', code: '54231') }
   let!(:ssn_code1) { create(:ssn_code, ssn: '1414', code: 'asdfg') }
@@ -9,7 +11,7 @@ RSpec.describe VerificationsController, type: :controller do
       before { subject }
 
       it 'status should be 404' do
-        expect(JSON.parse(response.body)["status"]).to eq(404)
+        expect(JSON.parse(response.body)['status']).to eq(404)
       end
     end
 
@@ -18,7 +20,7 @@ RSpec.describe VerificationsController, type: :controller do
       before { subject }
 
       it 'status should be 404' do
-        expect(JSON.parse(response.body)["status"]).to eq(404)
+        expect(JSON.parse(response.body)['status']).to eq(404)
       end
     end
 
@@ -27,11 +29,11 @@ RSpec.describe VerificationsController, type: :controller do
       before { subject }
 
       it 'status should be 400' do
-        expect(JSON.parse(response.body)["status"]).to eq(400)
+        expect(JSON.parse(response.body)['status']).to eq(400)
       end
 
       it 'should return token' do
-        expect(JSON.parse(response.body)["token"]).not_to be_nil 
+        expect(JSON.parse(response.body)['token']).not_to be_nil
       end
     end
   end

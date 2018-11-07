@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Users::SessionsController < Devise::SessionsController
   prepend_before_action :check_captcha, only: [:create]
-  
+
   private
-  
+
   def check_captcha
     unless verify_recaptcha
       self.resource = resource_class.new

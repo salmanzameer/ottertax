@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rubygems'
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # require_relative 'support/controller_helpers'
 require 'simplecov'
 SimpleCov.start 'rails'
@@ -10,7 +12,7 @@ require 'rspec/rails'
 require 'pry'
 require 'capybara/rspec'
 
-ENV['OT-SECRET-KEY'] = "secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ"
+ENV['OT-SECRET-KEY'] = 'secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -18,7 +20,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::TestHelpers, type: :helper
-  
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -38,7 +40,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
-  
+
   config.after do
     DatabaseCleaner.clean
   end
@@ -57,7 +59,7 @@ RSpec.configure do |config|
   config.expose_dsl_globally = false
 end
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
 Capybara.javascript_driver = :chrome

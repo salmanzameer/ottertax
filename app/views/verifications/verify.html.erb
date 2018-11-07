@@ -10,7 +10,7 @@
     <%= hidden_field_tag :code_id, "", class: "user-ssn-code-id" %>
     <%= recaptcha_tags callback: "submitInvisibleRecaptchaForm" %>
     <p class="user-verification-captcha-error error-p"></p>
-    <%= submit_tag "Register", class: "btn btn-lg btn-primary btn-block login-button user-verify-code-form-btn", data: { path: verify_code_path } %>
+    <%= submit_tag "Register", class: "btn btn-lg btn-primary btn-block login-button user-verify-code-form-btn", data: { path: verify_code_path, env: Rails.env } %>
     Already have an account? <%= link_to "Click here to login", new_session_path('user')  %>
   <% end %>
 </div>

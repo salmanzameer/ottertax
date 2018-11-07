@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 RSpec.feature 'User Sign In', js: true do
   let!(:ssn_code) { create(:ssn_code, ssn: '1234', code: '54231') }
   let!(:user)     { create(:user, email: 'salman@gmail.com', ssn_code_id: ssn_code.id) }
-  
+
   context 'When user have valid credentials' do
     before { user }
     scenario 'Fill signin page for user' do

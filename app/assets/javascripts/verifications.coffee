@@ -11,10 +11,12 @@ jQuery ->
 				if $(this).val() == ''
 					$(this).next().text('This field is required').show()
 			
-			if (grecaptcha.getResponse().length == 0)
-				$('.user-verification-captcha-error').text('Please select the checkbox.').show()
-				return false
-			else if ($('.user-verification-ssn-error, .user-verification-code-error').is(':visible'))
+			if $(this).data('env') != 'test'
+				if (grecaptcha.getResponse().length == 0)
+					$('.user-verification-captcha-error').text('Please select the checkbox.').show()
+					return false
+			
+			if ($('.user-verification-ssn-error, .user-verification-code-error').is(':visible'))
 				return false
 			else
 				$.ajax
@@ -82,10 +84,13 @@ jQuery ->
 				if $(this).val() == ''
 					$(this).next().text('This field is required').show()
 			
-			if (grecaptcha.getResponse().length == 0)
-				$('.user-verification-captcha-error').text('Please select the checkbox.').show()
-				return false
-			else if ($('.error-p').is(':visible'))
+			if $(this).data('env') != 'test'
+				if (grecaptcha.getResponse().length == 0)
+					$('.user-verification-captcha-error').text('Please select the checkbox.').show()
+					return false
+
+			
+			if ($('.error-p').is(':visible'))
 				return false
 			else
 				$(".user-signin-form").submit()
