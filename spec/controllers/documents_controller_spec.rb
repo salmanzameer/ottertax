@@ -72,4 +72,38 @@ RSpec.describe DocumentsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    context 'edit document' do
+      subject { get :edit, params: { id: document.id } }
+      before { subject }
+
+      it 'document id is equal to curent doc id' do
+        expect(assigns(:document).id).to eq(document.id)
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'update document' do
+      subject { post :update, params: { id: document.id, document: { year: 2018, file_format: 2, form_name: 2, file: fixture_file_upload(Rails.root.join('test/fixtures/test.pdf')) } } }
+      before { subject }
+
+      it 'document year to update' do
+        expect(assigns(:document).year).to eq(2018)
+      end
+
+      it 'document year not eq to previous year' do
+        expect(assigns(:document).year).not_to eq(2017)
+      end
+
+      it 'document file_format' do
+        expect(assigns(:document).file_format).to eq(2)
+      end
+
+      it 'document form_name to update' do
+        expect(assigns(:document).form_name).to eq(2)
+      end
+    end
+  end
 end
