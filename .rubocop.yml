@@ -31,8 +31,7 @@ Metrics/LineLength:
   URISchemes:
     - http
     - https
-  # The IgnoreCopDirectives option causes the LineLength rule to ignore cop
-  # directives like '# rubocop: enable ...' when calculating a line's length.
+ 
   IgnoreCopDirectives: false
   # The IgnoredPatterns option is a list of !ruby/regexp and/or string
   # elements. Strings will be converted to Regexp objects. A line that matches
