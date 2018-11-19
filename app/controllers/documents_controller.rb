@@ -16,7 +16,7 @@ class DocumentsController < ApplicationController
     data = @document.decrypt_file
 
     file_hash = { filename: @document.filename, type: @document.content_type }
-    file_hash.merge!(disposition: 'inline') if params[:type] == 'view'
+    file_hash[:disposition] = 'inline' if params[:type] == 'view'
 
     send_data(data, file_hash)
   end
