@@ -36,19 +36,6 @@ pipelines:
           - bundle exec rspec spec
         services:
           - postgres
-  branches:
-    master:
-      - step:
-          script:
-            - bundle exec cap production deploy --trace
-          services:
-            - postgres
-    development:
-      - step:
-          script:
-            - bundle exec cap staging deploy --trace
-          services:
-            - postgres
 definitions:
   services:
     postgres:
