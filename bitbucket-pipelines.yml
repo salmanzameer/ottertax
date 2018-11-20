@@ -14,7 +14,7 @@ pipelines:
           - apt-get clean
           - gem install bundler
           - bundle install
-
+          - bundle exec rspec
 definitions:
   caches:
     bundler: ./vendor
