@@ -33,7 +33,6 @@ pipelines:
           - chmod 0755 /usr/local/bin/chromedriver
           - export IS_PIPELINE=true
           - bundle exec rake db:migrate RAILS_ENV=test
-          - rubocop
           - bundle exec rspec spec
         services:
           - postgres
