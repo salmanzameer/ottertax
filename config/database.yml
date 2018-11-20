@@ -10,11 +10,12 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: db_dev_ottrtax_test
+  database: test_db
   pool: 5
-  username: postgres
-  password: password
+  username: test_user
+  password: test_user
   host: localhost
+  port: 5432
 
 production:
   adapter: postgresql
