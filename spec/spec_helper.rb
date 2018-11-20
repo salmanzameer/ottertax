@@ -5,8 +5,6 @@ require 'rubygems'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # require_relative 'support/controller_helpers'
-require 'simplecov'
-SimpleCov.start 'rails'
 require 'devise'
 require 'rspec/rails'
 require 'pry'

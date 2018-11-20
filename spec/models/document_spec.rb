@@ -10,7 +10,7 @@ RSpec.describe Document do
     subject { document.uploaded_file = fixture_file_upload(Rails.root.join('test/fixtures/test.pdf')) }
 
     context 'when file is present' do
-      it 'does not create new seen_episode' do
+      it 'should return test.pdf' do
         subject
         expect(document.filename).to eq('test.pdf')
       end
@@ -21,7 +21,7 @@ RSpec.describe Document do
     subject { document.send(:encrypt, fixture_file_upload(Rails.root.join('test/fixtures/test.pdf')).read) }
 
     context 'when file is present' do
-      it 'does not create new seen_episode' do
+      it 'should not be nil' do
         expect(subject).not_to be_nil
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe Document do
     end
 
     context 'when file is present' do
-      it 'does not create new seen_episode' do
+      it 'should not be nil' do
         expect(subject).not_to be_nil
       end
     end
