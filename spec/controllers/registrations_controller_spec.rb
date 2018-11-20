@@ -9,7 +9,6 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     context 'when resource is present' do
       it 'will return document path' do
-        
       end
     end
   end

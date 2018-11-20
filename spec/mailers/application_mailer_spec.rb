@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 include ActionDispatch::TestProcess::FixtureFile
 RSpec.describe ApplicationMailer do
   let!(:ssn_code) { create(:ssn_code, ssn: '1234', code: '54231') }
@@ -6,7 +8,7 @@ RSpec.describe ApplicationMailer do
 
   describe '#send_document' do
     before { document.uploaded_file = fixture_file_upload(Rails.root.join('test/fixtures/test.pdf')) }
-    subject { ApplicationMailer.send_document(document, "salman@xoho.tech").deliver }
+    subject { ApplicationMailer.send_document(document, 'salman@xoho.tech').deliver }
 
     context 'send email' do
       it 'it will send email' do

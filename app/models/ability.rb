@@ -3,7 +3,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-  	true
+  def initialize(_user)
+    true
   end
 end

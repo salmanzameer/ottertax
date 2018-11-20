@@ -4,8 +4,8 @@ class Users::SessionsController < Devise::SessionsController
   prepend_before_action :check_captcha, only: [:create]
 
   def new
-  	gon.rails_env = Rails.env
-  	super	
+    gon.rails_env = Rails.env
+    super
   end
 
   private
