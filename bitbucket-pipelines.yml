@@ -19,7 +19,9 @@ pipelines:
           # - apt-get update
           # - apt-get -t jessie-backports install openjdk-8-jdk
           # - apt-get install -y unzip openjdk-8-jre-headless xvfb libxi6 libgconf-2-4
-          - apt install -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
+          # - apt install -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
+          - apt install -t jessie-backports ca-certificates-java
+          - apt-get -y install openjdk-8-jdk openjdk-8-jre openjdk-8-jdk-headless openjdk-8-jre-headless
           - curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
           - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
           - apt-get -y update
