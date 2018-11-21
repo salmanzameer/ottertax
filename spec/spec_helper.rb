@@ -6,6 +6,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # require_relative 'support/controller_helpers'
 require 'devise'
+require 'factory_bot'
 require 'rspec/rails'
 require 'pry'
 require 'capybara/rspec'
@@ -13,7 +14,7 @@ require 'capybara/rspec'
 ENV['OT-SECRET-KEY'] = 'secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Rails.application.routes.url_helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view

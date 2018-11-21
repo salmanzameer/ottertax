@@ -82,7 +82,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'guard-rspec', require: false
   gem 'rails-controller-testing'
