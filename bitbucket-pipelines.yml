@@ -44,15 +44,11 @@ pipelines:
       - step:
           script:
             - bundle install
-            - npm install
-            - npm test
             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
     develop:
       - step:
           script:
             - bundle install
-            - npm install
-            - npm test
             - git fetch --all --unshallow
             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_STAGINGAPP_NAME.git HEAD:master
 definitions:
