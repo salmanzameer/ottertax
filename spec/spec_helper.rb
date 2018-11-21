@@ -57,8 +57,19 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.expose_dsl_globally = false
 end
+
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+
+  options = ::Selenium::WebDriver::Chrome::Options.new
+
+  options.add_argument('--no-sandbox')
+  if ENV["IS_PIPELINE"] === 'true'
+    options.add_argument('--headless')
+  end
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1400')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.javascript_driver = :chrome
