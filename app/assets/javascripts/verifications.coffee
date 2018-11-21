@@ -84,7 +84,7 @@ jQuery ->
 				if $(this).val() == ''
 					$(this).next().text('This field is required').show()
 			
-			if gon.rails_env != 'test' != 'test'
+			if gon.rails_env != 'test'
 				if (grecaptcha.getResponse().length == 0)
 					$('.user-verification-captcha-error').text('Please select the checkbox.').show()
 					return false
