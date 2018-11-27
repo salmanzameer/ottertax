@@ -11,7 +11,7 @@ jQuery ->
 				if $(this).val() == ''
 					$(this).next().text('This field is required').show()
 			
-			if gon.rails_env != 'test'
+			if gon.google_captcha == 'true'
 				if (grecaptcha.getResponse().length == 0)
 					$('.user-verification-captcha-error').text('Please select the checkbox.').show()
 					return false
@@ -84,7 +84,7 @@ jQuery ->
 				if $(this).val() == ''
 					$(this).next().text('This field is required').show()
 			
-			if gon.rails_env != 'test'
+			if gon.google_captcha == 'true'
 				if (grecaptcha.getResponse().length == 0)
 					$('.user-verification-captcha-error').text('Please select the checkbox.').show()
 					return false
