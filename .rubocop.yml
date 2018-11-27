@@ -1,5 +1,21 @@
 # This is the default configuration file. Enabling and disabling is configured
 # in separate files. This file adds all other parameters apart from Enabled.
+
+AllCops:
+  # Include common Ruby source files.
+  Exclude:
+    - '.git/**/*'
+    - 'bin/*'
+    - 'db/*'
+    - 'test/test_helper.rb'
+    - 'Gemfile'
+    - 'config/initializers/*'
+    - 'db/migrate/*'
+    - 'test/*/*'
+    - 'spec/*/*/*/*'
+    - 'spec/**/**/**/**'
+    - 'spec/*/*/*'
+    - 'app/assets/javascripts/*.js.coffee'
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be an Integer or
   # a Float.
