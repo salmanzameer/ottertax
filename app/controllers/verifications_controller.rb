@@ -19,7 +19,6 @@ class VerificationsController < ApplicationController
 
       render json: { status: status, message: message, token: token, code_id: id }
     end
-    gon.rails_env = Rails.env
   end
 
   def invite
