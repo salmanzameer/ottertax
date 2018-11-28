@@ -42,12 +42,17 @@ pipelines:
     master:
       - step:
           script:
-            - bundle install
+            - git push https://heroku:$HEROKU_PROD_API_KEY@git.heroku.com/$HEROKU_PROD_APP_NAME.git HEAD:master
+    
+    staging:
+      - step: *Build
+      - step:
+          script:
             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
+
     develop:
       - step:
           script:
-            - bundle install
             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_STAGINGAPP_NAME.git HEAD:master
 definitions:
   services:
