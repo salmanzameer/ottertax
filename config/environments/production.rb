@@ -89,14 +89,14 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-  if ENV['SERVER_TYPE'] == 'staging'
-    config.action_mailer.default_url_options = { host: 'ottertax.herokuapp.com' }
-  elsif ENV['SERVER_TYPE'] == 'develop'
-    config.action_mailer.default_url_options = { host: 'ottertax-staging.herokuapp.com' }
-  else
-    config.action_mailer.default_url_options = { host: 'evening-lake-73732.herokuapp.com' }
-  end
-    
+  config.action_mailer.default_url_options = if ENV['SERVER_TYPE'] == 'staging'
+                                               { host: 'ottertax.herokuapp.com' }
+                                             elsif ENV['SERVER_TYPE'] == 'develop'
+                                               { host: 'ottertax-staging.herokuapp.com' }
+                                             else
+                                               { host: 'evening-lake-73732.herokuapp.com' }
+                                             end
+
   if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
