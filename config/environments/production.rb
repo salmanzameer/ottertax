@@ -93,6 +93,8 @@ Rails.application.configure do
                                                { host: 'ottertax.herokuapp.com' }
                                              elsif ENV['SERVER_TYPE'] == 'develop'
                                                { host: 'ottertax-staging.herokuapp.com' }
+                                             elsif ENV['SERVER_TYPE'] == 'client_heroku'
+                                               { host: 'dry-atoll-35348.herokuapp.com' }
                                              else
                                                { host: 'evening-lake-73732.herokuapp.com' }
                                              end
