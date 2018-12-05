@@ -9,7 +9,7 @@ class Document < ApplicationRecord
 
   def uploaded_file=(incoming_file)
     self.filename = incoming_file.is_a?(File) ? File.basename(incoming_file) : incoming_file.original_filename
-    self.content_type = ((!incoming_file.is_a?(File) && incoming_file.content_type.present?) ? incoming_file.content_type : 'application/pdf')
+    self.content_type = (!incoming_file.is_a?(File) && incoming_file.content_type.present? ? incoming_file.content_type : 'application/pdf')
     self.file_contents = encrypt_file(incoming_file.read)
   end
 
