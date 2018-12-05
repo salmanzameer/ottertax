@@ -11,7 +11,7 @@ require 'rspec/rails'
 require 'pry'
 require 'capybara/rspec'
 
-ENV['OT-SECRET-KEY'] = 'secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ'
+ENV['OT_SECRET_KEY'] = 'secret.key:///message_encryptor;g5HCCdORMQRfRlgcJpFZ_YMkZZM5EPh2xjaHx31x9iqpuMuDvlTKdlP48GXSBbpSSnJOFT3JYgDEYUbK5GRQDQ'
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
