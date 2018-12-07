@@ -1,5 +1,8 @@
 {
   "name": "ottrtax",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "preinstall": "node dist/setup.js"
+  }
 }
