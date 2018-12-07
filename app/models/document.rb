@@ -54,14 +54,16 @@ class Document < ApplicationRecord
   private
 
   def encrypt(data)
-    cryptor = Cryptor::SymmetricEncryption.new(ENV['OT_SECRET_KEY'])
-    ciphertext = cryptor.encrypt(data)
+    # cryptor = Cryptor::SymmetricEncryption.new(ENV['OT_SECRET_KEY'])
+    # ciphertext = cryptor.encrypt(data)
+    ciphertext = Base64.encode64(data)
     ciphertext
   end
 
   def decrypt(data)
-    cryptor = Cryptor::SymmetricEncryption.new(ENV['OT_SECRET_KEY'])
-    decrypted = cryptor.decrypt(data)
+    # cryptor = Cryptor::SymmetricEncryption.new(ENV['OT_SECRET_KEY'])
+    # decrypted = cryptor.decrypt(data)
+    decrypted = Base64.decode64(data)
     decrypted
   end
 end
